@@ -1,0 +1,21 @@
+{
+  "name": "playwright-snippets",
+  "version": "1.0.0",
+  "description": "Some code snippets that are useful for Playwright",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zac11/playwright-snippets.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zac11/playwright-snippets/issues"
+  },
+  "homepage": "https://github.com/zac11/playwright-snippets#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.26.1"
+  }
+}
