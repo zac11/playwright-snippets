@@ -1,6 +1,9 @@
 import { chromium,test } from "@playwright/test";
 
+test.use({ viewport: { width: 1400, height: 1000 } });
 test('Launch the Selectors hub test page',async()=>{
+
+   
     const browser = await chromium.launch({
         headless: false
     });
@@ -11,12 +14,14 @@ test('Launch the Selectors hub test page',async()=>{
     await page.waitForSelector('.dropbtn',{
         state: "visible"
     });
-
-    const hrefs = await page.evaluate(() => {
-        return Array.from(document.links).map(item => item.href);
-      });
     
-    await console.log(hrefs.length);
+  
+    // we want to mask this locator
+   let mask_locator  = await page.locator("a[href='https://hubs.la/Q01nPnlN0%20']");
+   let mask_locator_2 = await page.locator('.dropbtn');
+ 
 
-    await page.close();
+   await page.screenshot({path: 'masked.png',mask:[mask_locator, mask_locator_2]});
+  
 });
+
