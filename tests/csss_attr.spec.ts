@@ -21,6 +21,8 @@ test("Launch the Selectors hub test page", async () => {
 
   await console.log(`${color}`);
 
+  await expect(color).toBe("hello world");
+
   const text = await page.locator("a[href='https://www.youtube.com/c/SelectorsHub?sub_confirmation=1'] >> nth=0");
   const textprop = await text.evaluate((element) =>
     window.getComputedStyle(element).getPropertyValue("font-size")

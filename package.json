@@ -17,5 +17,8 @@
   "homepage": "https://github.com/zac11/playwright-snippets#readme",
   "devDependencies": {
     "@playwright/test": "^1.27.0"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security"
   }
 }
