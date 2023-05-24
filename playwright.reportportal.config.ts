@@ -21,34 +21,20 @@ const config: PlaywrightTestConfig = {
      */
     timeout: 5000
   },
-  
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  //retries: 3,
-  
-  //globalSetup : "./global-setup.js",
-  //globalTeardown : "./global-teardown.js",
-  
+  retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  //workers: 3,
+  //workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-
-    // proxy:{
-    //   server: 'http://myproxy.com:3128',
-    //   username: 'usr',
-    //   password: 'pwd'
-    // }
-   
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
-    navigationTimeout : 10000,
-    
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
 
@@ -56,18 +42,14 @@ const config: PlaywrightTestConfig = {
     trace: 'on-first-retry',
     permissions: ['geolocation'],
     geolocation: { latitude: 28.5311541, longitude: 77.3899336 },
-    headless: false,
-    
   },
 
   /* Configure projects for major browsers */
   projects: [
-    
     {
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        
       },
     },
 

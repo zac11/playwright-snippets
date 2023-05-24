@@ -1,6 +1,6 @@
 /// <reference lib="dom"/>
-import * as fs from 'fs';
-import * as path from 'path';
+import { createDataTransfer } from "playwright-utilities";
+import { resolve } from "node:path";
 import { chromium,test } from "@playwright/test";
 
 test.use({ viewport: { width: 1400, height: 1000 } });
@@ -13,29 +13,23 @@ test('Launch the Selectors hub test page',async()=>{
     const context = await browser.newContext();
     const page = await context.newPage();
 
-    await page.goto("https://stackblitz.com/edit/p1uwvf-pgvw43?file=index.html");
-    await page.waitForTimeout(10000);
+    await page.goto("https://cgi-lib.berkeley.edu/ex/fup.html");
+    await page.waitForTimeout(5000);
 
-const buffer = fs.readFileSync('/Users/Rahul_Yadav/Downloads/1436_LifeInsurancePolicies2.pdf');
- 
-// Create the DataTransfer and File
-const dataTransfer = await page.evaluateHandle((data) => {
-    const dt = new DataTransfer();
-    // Convert the buffer to a hex array
-    const file = new File([data.toString('hex')], 'file.pdf', { type: 'application/pdf' });
-    dt.items.add(file);
-    return dt;
-}, buffer);
- 
-// Now dispatch
-const elementlocator =  page.frameLocator("iframe[title='Preview page']").getByTitle('Browse...');
-await page.dispatchEvent(elementlocator, 'drop', { dataTransfer }); // this needs to be looked upon
-    await page.waitForTimeout(2000);
-
-    await page.close();
-
+   
+    const dataTransfer = await createDataTransfer({
+        page,
+        filePath: "/Users/Rahul_Yadav/Downloads/shub.png",
+        fileName: "shub.png",
+        fileType: "image/png",
+      });
     
-});
+    await page.dispatchEvent("input[name='upfile']", "drop", { dataTransfer });  
+    await page.waitForTimeout(3000);
+    await page.locator("input[value='Press']").click();
+    await page.waitForTimeout(3000);
+    
+ });
 
 
 

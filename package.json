@@ -16,9 +16,12 @@
   },
   "homepage": "https://github.com/zac11/playwright-snippets#readme",
   "devDependencies": {
-    "@playwright/test": "^1.27.0"
+    "@playwright/test": "^1.32.0"
   },
   "dependencies": {
-    "fs": "^0.0.1-security"
+    "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security",
+    "playwright-utilities": "^1.0.1",
+    "ts-dotenv": "^0.9.1"
   }
 }
