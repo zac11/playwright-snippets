@@ -33,6 +33,16 @@ test.describe(`First test`,()=>{
        
     //    for (const li of await page.getByRole('listitem').all())
     //    await li.click();
+
+    /**
+     *  Change the count of entries and get their names
+     */
+
+    
+       await page.locator(`select[name='example_length']`).selectOption(`25`);
+       await page.waitForTimeout(3000);
+       await page.locator(`table#example tbody`).locator(`tr`).locator(`:scope`).locator(`td.sorting_1`).allInnerTexts();
+       await page.waitForTimeout(3000);
                 
 
        /**
