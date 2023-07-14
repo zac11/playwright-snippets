@@ -16,6 +16,26 @@ test.describe(`First test`,()=>{
        await page.waitForTimeout(10000);
 
        /**
+        * Print the count of all rows
+        * 
+        */
+
+       const parentBody = await page.locator(`table#example tbody`);
+       console.log(await parentBody.locator('tr').count());
+
+       /**
+        *  Count number of columns for each row
+        */
+       const allRows = await page.locator(`table#example tbody tr`).all();
+         allRows.forEach(async(rows)=>{
+         console.log( await rows.locator(`td`).count());
+       });
+       
+    //    for (const li of await page.getByRole('listitem').all())
+    //    await li.click();
+                
+
+       /**
         * Select the last person in the last from Tokyo office
         */
 
