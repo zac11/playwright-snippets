@@ -41,7 +41,11 @@ test.describe(`First test`,()=>{
     
        await page.locator(`select[name='example_length']`).selectOption(`25`);
        await page.waitForTimeout(3000);
-       await page.locator(`table#example tbody`).locator(`tr`).locator(`:scope`).locator(`td.sorting_1`).allInnerTexts();
+       const allnames = await page.locator(`table#example tbody`).locator(`tr`).locator(`:scope`).locator(`td.sorting_1`).allInnerTexts();
+       await allnames.forEach((text)=>{
+        console.log(text);
+    })
+
        await page.waitForTimeout(3000);
                 
 
