@@ -31,11 +31,16 @@ test.describe(`First test`,()=>{
             let percentChangeNumber = Number(percentChange[0].replace('%', ''));
             
             // Check if the % Change is greater than 2.5
-            if(companyName && !isNaN(percentChangeNumber) && percentChangeNumber > 2.5){
-                data.push({
-                    companyName: companyName,
-                    percentChange: percentChange
-                });
+            if (companyName.length > 0 && percentChange.length > 0) {
+                let percentChangeNumber = Number(percentChange[0].replace('%', ''));
+    
+                // Check if the % Change is greater than 2.5
+                if (!isNaN(percentChangeNumber) && percentChangeNumber > 2.5){
+                    data.push({
+                        companyName: companyName[0],
+                        percentChange: percentChange[0]
+                    });
+                }
             }
         }
 
